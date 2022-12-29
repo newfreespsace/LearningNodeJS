@@ -1,6 +1,7 @@
-let a = 'abcdefg';
+let a = {
+  a : 3,
+  b : 4
+};
 
-let b = a.replace('a', 'x')
-         .replace('b', 'y'); 
 
-console.log(b);
+console.log(a.a);

@@ -1,5 +1,5 @@
 {
-  "name": "learningnodejs",
+  "name": "natours",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,6 +19,8 @@
   "homepage": "https://github.com/newfreespsace/LearningNodeJS#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "slugify": "^1.0.0"
-  }
+    "slugify": "^1.0.0",
+    "superagent": "^8.0.6"
+  },
+  "devDependencies": {}
 }

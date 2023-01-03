@@ -12,7 +12,6 @@ function get_bc() {
   return {b, c};
 }
 
-
 function get_three() {
   while (true) {
     let a = Math.round(Math.random() * 20);

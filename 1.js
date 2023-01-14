@@ -1,3 +1,5 @@
-let a = {a: String};
+let a = 'abcd';
 
-console.log(a.a);
+a += 'c';
+
+const b = a.concat('m');

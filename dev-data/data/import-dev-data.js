@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 dotenv.config({ path: './config.env' });
+
 const Tour = require('../../models/tourModel');
 
 const DB = process.env.DATABASE.replace(
@@ -19,26 +20,29 @@ mongoose
   })
   .then(() => console.log('DB connection successful'));
 
-const tours = fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8');
+const tours = JSON.parse(
+  fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8')
+);
 
 const importData = async () => {
   try {
-    // await Tour.create(tours);
+    await Tour.create(tours);
+    // await Tour.find();
     console.log('Import date successful');
-    process.exit();
   } catch (err) {
     console.log(err.message);
   }
+  process.exit();
 };
 
 const deleteData = async () => {
   try {
     await Tour.deleteMany();
     console.log('Delete DB successful!');
-    process.exit();
   } catch (err) {
     console.log(err.message);
   }
+  process.exit();
 };
 
 if (process.argv[2] === '--import') {

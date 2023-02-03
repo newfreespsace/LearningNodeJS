@@ -9,7 +9,6 @@ const router = express.Router();
 router.route('/tour-stats').get(tourController.getTourStats);
 router.route('/monthly-plan/:year').get(tourController.getMonthPlan);
 
-
 router
   .route('/')
   .get(tourController.getAllTours)
@@ -20,6 +19,5 @@ router
   .get(tourController.getTour)
   .patch(tourController.updateTour)
   .delete(tourController.deleteTour);
-
 
 module.exports = router;

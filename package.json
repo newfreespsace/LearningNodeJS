@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "start:prod": "cross-env NODE_ENV=production nodemon server.js"
+    "start:prod": "cross-env NODE_ENV=production nodemon server.js",
+    "debug": "ndb server.js"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,8 @@
     "nodemon": "^2.0.20",
     "slug": "^8.2.2",
     "slugify": "^1.6.5",
-    "superagent": "^8.0.6"
+    "superagent": "^8.0.6",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

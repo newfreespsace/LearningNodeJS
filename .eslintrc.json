@@ -17,8 +17,7 @@
       "prettier/prettier": ["warn", { 
         "endOfLine": "auto",
         "singleQuote": true,
-        "arrowParens": "avoid",
-        ""
+        "arrowParens": "avoid"
         }]
     }
   }

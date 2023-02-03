@@ -1,3 +1,22 @@
+const AppError = require('../utils/appError');
+
+const handleCastErrorDB = err => {
+  const message = `Invalid ${err.path}: ${err.value}.`;
+
+  return new AppError(message, 400);
+};
+
+const handleDuplicateFieldsDb = err => {
+  const string = err.message;
+  // const regex = /"([^"]*)"/;
+  const regex = /(["'])(\\?.)*?\1/;
+  const match = string.match(regex);
+
+  const message = `Duplicate field value: ${match[0]}. Please use another value!`;
+
+  return new AppError(message, 500);
+};
+
 const sendErrorDev = (err, res) => {
   res.status(err.statusCode).json({
     status: err.status,
@@ -20,7 +39,7 @@ const seedErrorProd = (err, res) => {
     // 1) Log error
     console.error('ERROR ', err);
 
-    // 2) Send generic message 
+    // 2) Send generic message
     res.status(500).json({
       status: 'error',
       message: 'Something went very wrong!',
@@ -35,6 +54,9 @@ module.exports = (err, req, res, next) => {
   if (process.env.NODE_ENV === 'development') {
     sendErrorDev(err, res);
   } else if (process.env.NODE_ENV === 'production') {
-    seedErrorProd(err, res);
+    let error = { ...err };
+    if (err.name === 'CastError') error = handleCastErrorDB(err);
+    if (err.code === 11000) error = handleDuplicateFieldsDb(err);
+    seedErrorProd(error, res);
   }
 };

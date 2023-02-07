@@ -46,7 +46,7 @@ const tourSchema = new mongoose.Schema(
           return val < this.price;
         },
         message: 'Discount price ({VALUE}) should be below regular price',
-      }
+      },
     },
     summary: {
       type: String,

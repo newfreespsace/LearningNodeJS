@@ -3,3 +3,5 @@ let a = async () =>  {
 };
 
 a().then( val => console.log(val));
+
+a

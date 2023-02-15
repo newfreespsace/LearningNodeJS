@@ -38,6 +38,8 @@ exports.signup = catchAsync(async (req, res) => {
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
+  console.log(email);
+
   if (!email || !password) {
     return next(new AppError('Please provide email and password!'), 400);
   }
@@ -49,8 +51,20 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   // 3) If everything ok, send token to client
+<<<<<<< HEAD
   createSendToken(user, 200, res);
 });
+=======
+  const token = signToken(user._id);
+  res.status(201).json({
+    status: 'success',
+    token,
+    data: {
+      user,
+    }
+  });
+}); 
+>>>>>>> 0ee4ab371792501d5d3bdc994d0e3a53f6378e2b
 
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and  Check of it's there

@@ -1,5 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -13,6 +16,10 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 app.use(express.json());
+
+// Data sanitization 
+app.use(mongoSanitize());
+
 app.use(express.static(`${__dirname}/public`));
 
 app.use((req, res, next) => {

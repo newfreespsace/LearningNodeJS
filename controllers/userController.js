@@ -28,6 +28,10 @@ exports.createUser = (req, res) => {
   });
 };
 
+exports.updateMe = (req, res, next) => {
+
+};
+
 exports.getUser = (req, res) => {
   res.status(500).json({
     status: 'error',

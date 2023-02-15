@@ -33,6 +33,8 @@ exports.signup = catchAsync(async (req, res) => {
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
+  console.log(email);
+
   if (!email || !password) {
     return next(new AppError('Please provide email and password!'), 400);
   }
@@ -48,8 +50,11 @@ exports.login = catchAsync(async (req, res, next) => {
   res.status(201).json({
     status: 'success',
     token,
+    data: {
+      user,
+    }
   });
-});
+}); 
 
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and  Check of it's there

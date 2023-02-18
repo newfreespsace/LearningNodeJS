@@ -1,34 +1,33 @@
 const mongoose = require('mongoose');
-const slugify = require('slugify');
-// const User = require('./userModel');
-// const validator = require('validator');
 
-const tourSchema = new mongoose.Schema(
-  {
-    startLocation: {
-      // GeoJSON
-      type: {
-        type: String,
-        default: 'Point',
-        enum: ['Point']
-      },
-      coordinates: [Number],
-      address: String,
-      description: String
+const testSchema = new mongoose.Schema({
+  name: {
+    type: {
+      type: String,
+      default: 'Point',
+      enum: 'Point',
     },
-    locations: [
-      {
-        type: {
-          type: String,
-          default: 'Point',
-          enum: ['Point']
-        },
-        coordinates: [Number],
-        address: String,
-        description: String,
-        day: Number
-      }
-    ]
-  });
+    age: {
+      type: Number,
+      default: 18,
+    },
+  },
+  name2: [{
+    type: {
+      type: String,
+      default: 'Point',
+      enum: 'Point',
+    },
+    age: {
+      type: Number,
+      default: 18,
+    },
+  }],
+});
 
-请帮我解释下这段代码
+
+
+
+const Test = mongoose.model('Test', testSchema);
+
+module.exports = Test;

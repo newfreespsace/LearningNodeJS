@@ -6,7 +6,6 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const sendEmail = require('../utils/email');
 
-
 const signToken = id =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -32,7 +31,7 @@ exports.signup = catchAsync(async (req, res) => {
     passwordConfirm: req.body.passwordConfirm,
   });
 
-  createSendToken(newUser);
+  createSendToken(newUser, 200, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -51,10 +50,6 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   // 3) If everything ok, send token to client
-<<<<<<< HEAD
-  createSendToken(user, 200, res);
-});
-=======
   const token = signToken(user._id);
   res.status(201).json({
     status: 'success',
@@ -64,7 +59,6 @@ exports.login = catchAsync(async (req, res, next) => {
     }
   });
 }); 
->>>>>>> 0ee4ab371792501d5d3bdc994d0e3a53f6378e2b
 
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and  Check of it's there

@@ -30,7 +30,7 @@ exports.updateOne = Model =>
     });
   });
 
-exports.createOne = Model => 
+exports.createOne = Model =>
   catchAsync(async (req, res) => {
     const newDoc = await Model.create(req.body);
     res.status(201).json({
@@ -70,7 +70,7 @@ exports.getAll = Model =>
       .sort()
       .limitFields()
       .paginate();
-    const doc = await features.query.explain();
+    const doc = await features.query;
 
     // SEND RESPONSE
     res.status(200).json({

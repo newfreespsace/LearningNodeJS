@@ -35,6 +35,12 @@ exports.signup = catchAsync(async (req, res) => {
 });
 
 exports.login = catchAsync(async (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Max-Age', '86400');
+
   const { email, password } = req.body;
 
   console.log(email);
@@ -56,9 +62,9 @@ exports.login = catchAsync(async (req, res, next) => {
     token,
     data: {
       user,
-    }
+    },
   });
-}); 
+});
 
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and  Check of it's there

@@ -4,7 +4,6 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const path = require('path');
-const cors = require('cors');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -26,14 +25,7 @@ app.use(express.json());
 
 // Data sanitization 
 app.use(mongoSanitize());
-
 app.use(express.static(`${__dirname}/public`));
-
-const corsConfig = {
-  origin: 'http://127.0.0.1:3000',
-  credentials: true,
-};
-app.use(cors());
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
